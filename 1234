@@ -1,0 +1,1882 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<title>Isaac Encyclopedia</title>
+
+<style>
+
+/* =====================================================
+   ОСНОВНЫЕ СТИЛИ
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Nunito",Arial,sans-serif;
+    background:#0b0908;
+    color:#f2eadf;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.08;
+
+    background-image:
+    radial-gradient(#fff 1px,transparent 1px);
+
+    background-size:5px 5px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    min-height:650px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:50px 20px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.94)
+        ),
+        url("https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/250900/header.jpg")
+        center/cover;
+}
+
+.hero{
+    max-width:1000px;
+}
+
+.hero h1{
+    font-family:"Nunito",Arial,sans-serif;
+    font-weight:900;
+    font-size:clamp(50px,9vw,110px);
+
+    line-height:.85;
+
+    color:#e7b66a;
+
+    text-shadow:
+        0 5px #160d20,
+        0 0 35px #000;
+}
+
+.hero h2{
+    margin-top:30px;
+
+    font-size:20px;
+    color:#b9b9c2;
+    letter-spacing:3px;
+}
+
+.hero p{
+    max-width:750px;
+
+    margin:30px auto;
+
+    color:#ddddE5;
+
+    font-size:18px;
+    line-height:1.7;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.button{
+    display:inline-block;
+
+    padding:15px 25px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.25s;
+}
+
+.steam{
+    background:#8f3f2f;
+    color:#fff;
+}
+
+.steam:hover{
+    transform:translateY(-4px);
+    background:#b0523d;
+}
+
+.secondary{
+    background:#241714;
+    color:#e7b66a;
+
+    border:1px solid #6f4435;
+}
+
+.secondary:hover{
+    transform:translateY(-4px);
+}
+
+/* =====================================================
+   NAV
+===================================================== */
+
+nav{
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    background:rgba(15,10,8,.96);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #282331;
+}
+
+nav ul{
+    list-style:none;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+}
+
+nav a{
+    display:block;
+
+    padding:15px 16px;
+
+    color:#b9b9c2;
+
+    text-decoration:none;
+
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#e7b66a;
+    background:#17131e;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main{
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:80px 20px;
+}
+
+section{
+    margin-bottom:110px;
+}
+
+.title{
+    text-align:center;
+    font-family:"Nunito",Arial,sans-serif;
+    font-weight:900;
+
+    color:#e7b66a;
+
+    font-size:42px;
+
+    margin-bottom:45px;
+}
+
+.title:after{
+    content:"";
+
+    display:block;
+
+    width:80px;
+    height:3px;
+
+    background:#9a6744;
+
+    margin:15px auto;
+}
+
+.text{
+    max-width:900px;
+
+    margin:auto;
+
+    color:#bbb;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    text-align:center;
+}
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+
+    margin-top:40px;
+}
+
+.stat{
+    padding:25px;
+
+    text-align:center;
+
+    background:#141218;
+
+    border:1px solid #393044;
+
+    border-radius:10px;
+}
+
+.stat strong{
+    display:block;
+
+    color:#e7b66a;
+
+    font-size:35px;
+}
+
+.stat span{
+    color:#a2a2ad;
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(240px,1fr));
+
+    gap:18px;
+}
+
+.card{
+    background:
+        linear-gradient(
+            145deg,
+            #19151f,
+            #0b0a0e
+        );
+
+    border:1px solid #3a3045;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+
+    border-color:#9a63d8;
+
+    box-shadow:
+        0 15px 35px #0009;
+}
+
+.card h3{
+    color:#e7b66a;
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#b9b9c2;
+
+    line-height:1.6;
+}
+
+/* =====================================================
+   DATABASE
+===================================================== */
+
+.database{
+    margin-top:40px;
+}
+
+.search{
+    width:100%;
+
+    padding:17px 20px;
+
+    border-radius:8px;
+
+    border:1px solid #3a3048;
+
+    background:#0b0a0e;
+
+    color:#fff;
+
+    outline:none;
+
+    font-size:16px;
+
+    margin-bottom:20px;
+}
+
+.search:focus{
+    border-color:#a874e0;
+}
+
+.filters{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+}
+
+.filter{
+    padding:10px 15px;
+
+    border-radius:6px;
+
+    background:#17131e;
+
+    border:1px solid #3a3048;
+
+    color:#bbb;
+
+    cursor:pointer;
+}
+
+.filter:hover{
+    color:#e7b66a;
+}
+
+.filter.active{
+    background:#4b326d;
+    color:#e7b66a;
+}
+
+.database-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(250px,1fr));
+
+    gap:15px;
+}
+
+.entry{
+    padding:20px;
+
+    border-radius:10px;
+
+    background:#121117;
+
+    border:1px solid #332a40;
+
+    transition:.2s;
+}
+
+.entry:hover{
+    border-color:#9a63d8;
+    transform:translateY(-3px);
+}
+
+.entry .icon{
+    font-size:35px;
+
+    margin-bottom:12px;
+}
+
+.entry h3{
+    color:#e4c28b;
+
+    margin-bottom:7px;
+}
+
+.entry small{
+    color:#92929f;
+}
+
+.entry p{
+    color:#b9b9c2;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin-top:8px;
+}
+
+/* =====================================================
+   CHARACTER CARDS
+===================================================== */
+
+.character{
+    position:relative;
+
+    overflow:hidden;
+}
+
+.character.tainted{
+    background:
+        linear-gradient(
+            145deg,
+            #1e1426,
+            #0a090e
+        );
+
+    border-color:#4b3264;
+}
+
+.tainted-label{
+    display:inline-block;
+
+    padding:4px 8px;
+
+    margin-bottom:10px;
+
+    border-radius:4px;
+
+    background:#51356b;
+
+    color:#d2c4e8;
+
+    font-size:11px;
+}
+
+/* =====================================================
+   DLC
+===================================================== */
+
+.dlc{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:20px;
+}
+
+.dlc-card{
+    padding:30px;
+
+    border-radius:12px;
+
+    background:#141118;
+
+    border:1px solid #392b48;
+}
+
+.dlc-card h3{
+    color:#e7b66a;
+
+    font-size:24px;
+
+    margin-bottom:12px;
+}
+
+.dlc-card p{
+    color:#b9b9c2;
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   MECHANICS
+===================================================== */
+
+.mechanics{
+    display:grid;
+
+    gap:12px;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.mechanic{
+    padding:20px;
+
+    background:#141118;
+
+    border-left:4px solid #8652bf;
+
+    color:#bbb;
+
+    line-height:1.6;
+}
+
+.mechanic b{
+    color:#e7b66a;
+}
+
+/* =====================================================
+   STEAM
+===================================================== */
+
+.steam-box{
+    padding:60px 25px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #181311,
+            #0b0908
+        );
+
+    border:1px solid #3a3642;
+
+    border-radius:15px;
+}
+
+.steam-box h2{
+    color:#fff;
+
+    font-size:35px;
+
+    margin-bottom:15px;
+}
+
+.steam-box p{
+    max-width:700px;
+
+    margin:0 auto 25px;
+
+    color:#b9b9c2;
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    padding:50px 20px;
+
+    text-align:center;
+
+    background:#050508;
+
+    border-top:1px solid #241d2d;
+
+    color:#666;
+
+    line-height:1.8;
+}
+
+footer b{
+    color:#9c70d2;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .hero h1{
+    font-family:"Nunito",Arial,sans-serif;
+    font-weight:900;
+        font-size:52px;
+    }
+
+    .title{
+        font-size:32px;
+    }
+
+    nav a{
+        padding:10px 8px;
+        font-size:12px;
+    }
+
+}
+
+
+.items-status{
+    margin:10px 0 18px;
+    color:#aaa096;
+    font-size:14px;
+}
+.item-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin:9px 0;
+}
+.item-meta span{
+    padding:4px 8px;
+    border-radius:6px;
+    border:1px solid #6f4435;
+    background:#241714;
+    color:#d5c8b8;
+    font-size:11px;
+    font-weight:800;
+}
+.item-pickup{
+    color:#e7b66a;
+    font-size:13px;
+    margin:7px 0;
+    font-style:italic;
+}
+.item-pool{
+    margin-top:10px;
+    color:#aaa096;
+    font-size:11px;
+    line-height:1.45;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header>
+
+<div class="hero">
+
+<h1>
+THE BINDING<br>
+OF ISAAC
+</h1>
+
+<h2>
+REBIRTH • AFTERBIRTH • AFTERBIRTH+ • REPENTANCE
+</h2>
+
+<p>
+
+Большая фанатская энциклопедия The Binding of Isaac:
+персонажи, Tainted-персонажи, предметы, боссы,
+враги, этажи, комнаты, механики, DLC и достижения.
+
+</p>
+
+<div class="buttons">
+
+<a
+class="button steam"
+href="https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/"
+target="_blank"
+>
+ Открыть Steam
+</a>
+
+<a
+class="button secondary"
+href="#characters"
+>
+ Персонажи
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+<ul>
+
+<li><a href="#about">Об игре</a></li>
+<li><a href="#characters">Персонажи</a></li>
+<li><a href="#items">Предметы</a></li>
+<li><a href="#enemies">Враги</a></li>
+<li><a href="#bosses">Боссы</a></li>
+<li><a href="#floors">Этажи</a></li>
+<li><a href="#mechanics">Механики</a></li>
+<li><a href="#dlc">DLC</a></li>
+<li><a href="#achievements">Достижения</a></li>
+<li><a href="#steam">Steam</a></li>
+
+</ul>
+
+</nav>
+
+
+<main>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about">
+
+<h2 class="title">Об игре</h2>
+
+<p class="text">
+
+The Binding of Isaac: Rebirth — процедурно генерируемый
+action RPG / roguelike, в котором каждое прохождение
+может отличаться от предыдущего.
+
+Игрок исследует комнаты, собирает предметы,
+сражается с противниками, открывает новые возможности
+и постепенно получает доступ к новым персонажам,
+этажам, боссам и концовкам.
+
+</p>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong>700+</strong>
+<span>предметов</span>
+</div>
+
+<div class="stat">
+<strong>100+</strong>
+<span>новых врагов</span>
+</div>
+
+<div class="stat">
+<strong>25+</strong>
+<span>новых боссов</span>
+</div>
+
+<div class="stat">
+<strong>100+</strong>
+<span>новых достижений</span>
+</div>
+
+<div class="stat">
+<strong>5000+</strong>
+<span>дизайнов комнат</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CHARACTERS
+===================================================== -->
+
+<section id="characters">
+
+<h2 class="title">Персонажи</h2>
+
+<p class="text">
+
+В версии с Repentance существует 17 основных
+персонажей и 17 их альтернативных Tainted-версий.
+
+</p>
+
+<br>
+
+<div
+id="charactersGrid"
+class="grid"
+></div>
+
+</section>
+
+
+<!-- =====================================================
+     ITEMS
+===================================================== -->
+
+<section id="items">
+
+<h2 class="title">База предметов</h2>
+
+<p class="text">
+
+В каталоге собраны коллекционные предметы Rebirth и DLC.
+Доступен поиск по названию и описанию, фильтры по типу и DLC,
+а также качество, назначение и пулы появления предмета.
+
+</p>
+
+<div class="database">
+
+<input
+id="itemSearch"
+class="search"
+placeholder=" Поиск предмета..."
+>
+
+<div id="itemsStatus" class="items-status">Подготавливаем полный каталог предметов…</div>
+
+<div class="filters">
+
+<button
+class="filter active"
+onclick="filterItems('all',this)"
+>
+Все
+</button>
+
+<button
+class="filter"
+onclick="filterItems('passive',this)"
+>
+Пассивные
+</button>
+
+<button
+class="filter"
+onclick="filterItems('active',this)"
+>
+Активные
+</button>
+
+<button
+class="filter"
+onclick="filterItems('familiar',this)"
+>
+Фамильяры
+</button>
+
+<button
+class="filter"
+onclick="filterItems('rebirth',this)"
+>
+Rebirth
+</button>
+
+<button
+class="filter"
+onclick="filterItems('afterbirth',this)"
+>
+Afterbirth
+</button>
+
+<button
+class="filter"
+onclick="filterItems('afterbirth+',this)"
+>
+Afterbirth+
+</button>
+
+<button
+class="filter"
+onclick="filterItems('repentance',this)"
+>
+Repentance
+</button>
+
+</div>
+
+<div
+id="itemsGrid"
+class="database-grid"
+></div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ENEMIES
+===================================================== -->
+
+<section id="enemies">
+
+<h2 class="title">Враги</h2>
+
+<p class="text">
+
+В игре существуют сотни различных противников.
+Они встречаются на разных этажах и имеют разные
+способы атаки и поведения.
+
+</p>
+
+<div
+id="enemiesGrid"
+class="database-grid"
+style="margin-top:35px"
+></div>
+
+</section>
+
+
+<!-- =====================================================
+     BOSSES
+===================================================== -->
+
+<section id="bosses">
+
+<h2 class="title">Боссы</h2>
+
+<p class="text">
+
+Боссы являются важной частью прохождения.
+Они связаны с определёнными этажами, испытаниями
+и различными путями развития забега.
+
+</p>
+
+<div
+id="bossesGrid"
+class="database-grid"
+style="margin-top:35px"
+></div>
+
+</section>
+
+
+<!-- =====================================================
+     FLOORS
+===================================================== -->
+
+<section id="floors">
+
+<h2 class="title">Этажи и главы</h2>
+
+<div
+id="floorsGrid"
+class="grid"
+></div>
+
+</section>
+
+
+<!-- =====================================================
+     MECHANICS
+===================================================== -->
+
+<section id="mechanics">
+
+<h2 class="title">Механики игры</h2>
+
+<div class="mechanics">
+
+<div class="mechanic">
+
+<b> Процедурная генерация</b><br>
+
+Уровни создаются из набора комнат.
+Расположение комнат, предметов и событий
+может изменяться между забегами.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Предметы</b><br>
+
+Предметы изменяют характеристики,
+атаки и способности персонажа.
+Некоторые предметы взаимодействуют друг
+с другом и создают новые комбинации.
+
+</div>
+
+
+<div class="mechanic">
+
+<b>️ Здоровье</b><br>
+
+Система здоровья включает несколько типов
+сердец и защитных эффектов.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Ключи</b><br>
+
+Ключи используются для открытия некоторых
+дверей и специальных комнат.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Бомбы</b><br>
+
+Бомбы позволяют взаимодействовать
+с некоторыми объектами и открывать
+секретные проходы.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Монеты</b><br>
+
+Монеты используются в магазинах,
+автоматах и некоторых механиках.
+
+</div>
+
+
+<div class="mechanic">
+
+<b>🃏 Карты</b><br>
+
+Карты дают одноразовые эффекты.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Пилюли</b><br>
+
+Пилюли дают различные случайные эффекты.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Тринкеты</b><br>
+
+Тринкеты дают небольшие постоянные
+или условные бонусы.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Фамильяры</b><br>
+
+Некоторые предметы создают союзников,
+которые следуют за персонажем
+и помогают ему.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Секретные комнаты</b><br>
+
+На некоторых этажах могут существовать
+скрытые комнаты и специальные области.
+
+</div>
+
+
+<div class="mechanic">
+
+<b>️ Альтернативные пути</b><br>
+
+Repentance добавляет полноценный
+альтернативный путь с отдельными главами,
+боссами и финальными событиями.
+
+</div>
+
+
+<div class="mechanic">
+
+<b> Tainted-персонажи</b><br>
+
+Альтернативные версии персонажей обладают
+сильно изменёнными механиками.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     DLC
+===================================================== -->
+
+<section id="dlc">
+
+<h2 class="title">Все основные версии и DLC</h2>
+
+<div class="dlc">
+
+<div class="dlc-card">
+
+<h3>The Binding of Isaac</h3>
+
+<p>
+
+Оригинальная игра, с которой началась серия.
+
+</p>
+
+</div>
+
+
+<div class="dlc-card">
+
+<h3>Wrath of the Lamb</h3>
+
+<p>
+
+Крупное дополнение к оригинальной версии,
+добавившее большое количество нового контента.
+
+</p>
+
+</div>
+
+
+<div class="dlc-card">
+
+<h3>Rebirth</h3>
+
+<p>
+
+Полный ремейк оригинальной игры
+на новом техническом фундаменте.
+
+</p>
+
+</div>
+
+
+<div class="dlc-card">
+
+<h3>Afterbirth</h3>
+
+<p>
+
+Большое дополнение с новыми предметами,
+персонажами, врагами, режимами
+и испытаниями.
+
+</p>
+
+</div>
+
+
+<div class="dlc-card">
+
+<h3>Afterbirth+</h3>
+
+<p>
+
+Расширение Afterbirth с дополнительным
+контентом и возможностями моддинга.
+
+</p>
+
+</div>
+
+
+<div class="dlc-card">
+
+<h3>Repentance</h3>
+
+<p>
+
+Крупнейшее расширение Rebirth.
+Добавляет альтернативный путь,
+новых персонажей, предметы, врагов,
+боссов, комнаты, достижения и многое другое.
+
+</p>
+
+</div>
+
+
+<div class="dlc-card">
+
+<h3>Repentance+</h3>
+
+<p>
+
+Дополнительное развитие версии Repentance
+с новым контентом и обновлениями.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ACHIEVEMENTS
+===================================================== -->
+
+<section id="achievements">
+
+<h2 class="title">Достижения</h2>
+
+<p class="text">
+
+В Repentance добавлено более 100 новых достижений,
+а общее количество достижений в полной версии
+очень велико.
+
+</p>
+
+<div class="database-grid" style="margin-top:35px">
+
+<div class="entry">
+<div class="icon"></div>
+<h3>Разблокировки</h3>
+<p>
+Многие достижения открывают новые предметы,
+персонажей и игровые возможности.
+</p>
+</div>
+
+<div class="entry">
+<div class="icon"></div>
+<h3>Испытания</h3>
+<p>
+Специальные режимы с уникальными условиями.
+</p>
+</div>
+
+<div class="entry">
+<div class="icon"></div>
+<h3>Финальные боссы</h3>
+<p>
+Победа над различными финальными боссами
+может открывать новые элементы игры.
+</p>
+</div>
+
+<div class="entry">
+<div class="icon"></div>
+<h3>Секреты</h3>
+<p>
+Некоторые достижения связаны с секретными
+областями и скрытыми механиками.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     STEAM
+===================================================== -->
+
+<section id="steam">
+
+<div class="steam-box">
+
+<h2>
+The Binding of Isaac: Rebirth
+</h2>
+
+<p>
+
+Для Repentance необходима базовая версия
+The Binding of Isaac: Rebirth.
+Repentance является DLC, а не отдельной игрой.
+
+</p>
+
+<a
+class="button steam"
+href="https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/"
+target="_blank"
+>
+ Открыть страницу Steam
+</a>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+<p>
+Fan Encyclopedia —
+<b>The Binding of Isaac</b>
+</p>
+
+<p>
+Неофициальный фанатский сайт.
+</p>
+
+<div style="margin-top:10px;color:#777;font-size:11px;">Данные каталога: Isaac Codex / Platinum God. Фанатский справочник.</div></footer>
+
+
+<script>
+
+/* =====================================================
+   ПЕРСОНАЖИ
+===================================================== */
+
+const CHARACTERS = [
+
+["Isaac","","normal","Базовый персонаж, доступный с начала игры. Начинает с 3 красными сердцами и активным D6, который позволяет перебрасывать предметы на пьедесталах. Хорошо подходит для изучения механики предметов, комнат и синергий."],
+["Magdalene","","normal","Персонаж с повышенным запасом здоровья: начинает с 4 красными сердцами и Yum Heart. Yum Heart восстанавливает половину красного сердца после перезарядки. Её стартовый набор делает первые этажи более прощающими."],
+["Cain","","normal","Начинает с 2 красными сердцами и Paper Clip. Его стартовые характеристики ориентированы на более быстрый темп игры, а Lucky Foot улучшает удачу и результаты некоторых случайных эффектов. Paper Clip позволяет открывать золотые сундуки без ключа."],
+["Judas","","normal","Начинает всего с 1 красным сердцем, но получает Book of Belial. Активный предмет временно усиливает урон и повышает шанс появления Devil Room. Это персонаж с высоким риском и сильным стартовым атакующим потенциалом."],
+["???","","normal","Blue Baby — персонаж без красных контейнеров сердца: здоровье представлено Soul Hearts. Начинает с The Poop и получает Relic после соответствующего прогресса. Механика здоровья заставляет внимательнее относиться к защите и ресурсам."],
+["Eve","","normal","Начинает с 2 красными сердцами и получает Whore of Babylon и Dead Bird. При низком здоровье Whore of Babylon значительно усиливает персонажа, а Dead Bird помогает атаковать врагов после получения урона. Её игра строится вокруг управления здоровьем."],
+["Samson","","normal","Начинает с 3 красными сердцами. Bloody Lust увеличивает урон после получения урона и может усиливаться в течение этажа. Поэтому персонаж способен превращать полученные удары в дополнительную силу, хотя безопасная игра всё ещё важна."],
+["Azazel","","normal","Начинает с 3 Black Hearts и коротким Brimstone-подобным лазером. Также обладает полётом. Его атака быстро уничтожает близких врагов, но ограниченная дальность требует подходить к противникам ближе, чем большинству персонажей."],
+["Lazarus","","normal","Начинает с 3 красными сердцами и механикой возрождения. После первого смертельного поражения получает отдельную форму Lazarus Risen с изменёнными характеристиками. Возможность вернуться к жизни является ключевой частью его дизайна."],
+["Eden","","normal","Каждый забег начинается с рандомизированными характеристиками и набором стартовых предметов. При создании нового забега используется токен Eden, поэтому два забега за этого персонажа могут сильно отличаться друг от друга."],
+["The Lost","","normal","Секретный персонаж без обычных контейнеров здоровья. Его выживаемость зависит от защитных эффектов и правильного уклонения; в версиях с Afterbirth+ стартовый Holy Mantle защищает от первого полученного урона в комнате."],
+["Lilith","","normal","Персонаж, построенный вокруг фамильяров. Начинает с Incubus и Box of Friends. Box of Friends временно создаёт копии фамильяров, поэтому большое количество помощников может резко увеличить её урон."],
+["Keeper","","normal","Использует монетное здоровье вместо обычной системы красных сердец. Начинает с Wooden Nickel и Store Key. Монеты одновременно служат ресурсом для магазинов и частью его выживаемости, поэтому управление деньгами особенно важно."],
+["Apollyon","","normal","Начинает с Void. Void может поглощать активные и пассивные предметы, превращая их эффекты в случайные бонусы характеристик или способности. Это делает его особенно гибким при выборе между несколькими предметами."],
+["The Forgotten","","normal","Персонаж ближнего боя, использующий костяную дубину вместо обычной стрельбы. Дубина имеет несколько вариантов атаки и позволяет отражать некоторые снаряды. В определённых ситуациях можно переключаться на The Soul."],
+["Bethany","","normal","Начинает с Book of Virtues и использует Soul Charges для усиления активных предметов. Заряды также связаны с её защитными и фамильярными механиками. Персонаж особенно сильно раскрывается при грамотном использовании активных предметов."],
+["Jacob & Esau","","normal","Два персонажа управляются одновременно и имеют отдельные полосы здоровья. Jacob быстрее, а Esau наносит больше урона. Предметы распределяются между братьями, поэтому позиционирование и контроль обоих персонажей являются главной частью механики."],
+
+["Tainted Isaac","","tainted","Альтернативная версия Isaac с ограниченным количеством слотов предметов. При подборе нового предмета часть текущего набора приходится заменять, поэтому выбор предметов становится постоянной частью стратегии."],
+["Tainted Magdalene","","tainted","Альтернативная версия Magdalene, ориентированная на ближний бой и восстановление здоровья. Её уникальная механика позволяет получать преимущества от постоянного нахождения рядом с врагами."],
+["Tainted Cain","","tainted","Альтернативная версия Cain, связанная с Bag of Crafting. Он собирает ресурсы и использует их для создания предметов, превращая обычные подбираемые предметы в материалы для крафта."],
+["Tainted Judas","","tainted","Альтернативная версия Judas с механикой Dark Arts. Использование способности позволяет временно становиться неуязвимым и взаимодействовать с врагами особым способом."],
+["Tainted ???","","tainted","Альтернативная версия ???, построенная вокруг различных видов какашек. Его способность позволяет создавать и использовать особые poop-объекты с разными эффектами."],
+["Tainted Eve","","tainted","Альтернативная версия Eve, которая создаёт кровавых фамильяров из здоровья. Фамильяры помогают в бою, а управление их количеством и здоровьем является основной частью персонажа."],
+["Tainted Samson","","tainted","Альтернативная версия Samson, использующая состояние Berserk. Получение урона помогает накапливать ярость и временно переходить к мощной атаке ближнего боя."],
+["Tainted Azazel","","tainted","Альтернативная версия Azazel с изменённым Brimstone-эффектом. Его механика строится вокруг особой формы лазера и управления ресурсом, связанным с атакой."],
+["Tainted Lazarus","","tainted","Альтернативная версия Lazarus с двумя отдельными формами. Переключение между ними позволяет использовать разные наборы характеристик и предметов, но требует следить за состоянием обеих форм."],
+["Tainted Eden","","tainted","Альтернативная версия Eden, у которого предметы и характеристики могут случайно изменяться после получения урона. Каждый новый вариант сборки может существенно менять стиль текущего забега."],
+["Tainted Lost","","tainted","Альтернативная версия The Lost с более жёсткими правилами выживания и специальными правилами получения предметов. Основной акцент сделан на уклонении и защитных эффектах."],
+["Tainted Lilith","","tainted","Альтернативная версия Lilith, использующая крупного фамильяра для атак. Управление им позволяет наносить урон иначе, чем стандартные слёзы."],
+["Tainted Keeper","","tainted","Альтернативная версия Keeper с монетной системой здоровья и усиленным взаимодействием с деньгами. Сбор монет становится одновременно способом выживания и источником ресурсов."],
+["Tainted Apollyon","","tainted","Альтернативная версия Apollyon, которая использует особых фамильяров и превращает поглощённые предметы в дополнительные атакующие возможности."],
+["Tainted Forgotten","","tainted","Альтернативная версия The Forgotten с изменённой механикой переключения между телами и боевыми состояниями. Управление позициями и состояниями является центральной частью игры."],
+["Tainted Bethany","","tainted","Альтернативная версия Bethany, использующая особую систему огненных фамильяров. Она позволяет превращать ресурсы во временных помощников и строить вокруг них атакующие комбинации."],
+["Tainted Jacob","","tainted","Альтернативная версия Jacob & Esau, в которой присутствует преследующий его Dark Esau. Нужно одновременно управлять боем Jacob и избегать опасностей, связанных с Dark Esau."]
+
+];
+
+
+/* =====================================================
+   ПРЕДМЕТЫ
+===================================================== */
+
+const ITEMS = [];
+
+/* Полный каталог коллекционных предметов из Rebirth + DLC. */
+const ITEMS_DATA_URL =
+    "https://raw.githubusercontent.com/ceressa/isaac-codex/main/assets/data/items.json";
+
+function mapItemCategory(category){
+    if(category === "rebirth_item") return "rebirth";
+    if(category === "afterbirth_item") return "afterbirth";
+    if(category === "afterbirth_plus_item") return "afterbirth+";
+    if(category === "repentance_item") return "repentance";
+    return "other";
+}
+
+function mapItemType(metadata){
+    const type = (metadata && metadata.Type) || "Item";
+    const lower = type.toLowerCase();
+    if(lower.includes("active")) return "active";
+    if(lower.includes("familiar")) return "familiar";
+    return "passive";
+}
+
+function normalizeItems(raw){
+    return raw
+        .filter(item =>
+            ["rebirth_item","afterbirth_item","afterbirth_plus_item","repentance_item"]
+            .includes(item.category)
+        )
+        .map(item => [
+            item.name || "Unknown Item",
+            "",
+            mapItemType(item.metadata || {}),
+            (item.description || []).join(" "),
+            item.quality ?? "—",
+            mapItemCategory(item.category),
+            item.pickup || "",
+            item.metadata && item.metadata["Item Pool"] || "",
+            item.id_number
+        ]);
+}
+
+const RU_EID_URL =
+    "https://raw.githubusercontent.com/wofsauge/External-Item-Descriptions/master/descriptions/rep/ru.lua";
+
+const RU_ITEM_DESCRIPTIONS = new Map();
+
+function luaUnescape(value){
+    return value
+        .replace(/\\"/g, '"')
+        .replace(/\\\\/g, "\\")
+        .replace(/\\n/g, "\n");
+}
+
+async function loadRussianDescriptions(){
+    try{
+        const response = await fetch(RU_EID_URL, {cache:"no-store"});
+        if(!response.ok) throw new Error("HTTP " + response.status);
+
+        const lua = await response.text();
+
+        // Format used by the Russian EID database:
+        // [ID] = {"ID", "Russian name", "Russian description"}
+        const re =
+            /\[(\d+)\]\s*=\s*\{"(?:\\.|[^"])*",\s*"((?:\\.|[^"])*)",\s*"((?:\\.|[^"])*)"\}/g;
+
+        let match;
+        while((match = re.exec(lua)) !== null){
+            const id = Number(match[1]);
+            const name = luaUnescape(match[2]);
+            const description = luaUnescape(match[3])
+                .replace(/#/g, "<br>")
+                .replace(/\{\{[^}]+\}\}/g, "")
+                .replace(/!!!/g, "⚠")
+                .replace(/\s+/g, " ")
+                .trim();
+
+            RU_ITEM_DESCRIPTIONS.set(id, {
+                name,
+                description
+            });
+        }
+
+        console.log(
+            "Русские описания предметов загружены:",
+            RU_ITEM_DESCRIPTIONS.size
+        );
+    }catch(error){
+        console.warn("Русский набор EID не загрузился:", error);
+    }
+}
+
+async function loadAllItems(){
+    const status = document.getElementById("itemsStatus");
+    try{
+        status.textContent = "Загрузка полного каталога предметов…";
+        const response = await fetch(ITEMS_DATA_URL, {cache:"no-store"});
+        if(!response.ok) throw new Error("HTTP " + response.status);
+
+        const data = await response.json();
+        ITEMS.length = 0;
+        ITEMS.push(...normalizeItems(data.items || []));
+        status.textContent =
+            `Загружено предметов: ${ITEMS.length}. Русские описания подключаются автоматически.`;
+        renderItems();
+    }catch(error){
+        status.textContent =
+            "Полный каталог не загрузился. Проверьте подключение к интернету.";
+        console.error("Isaac item database:", error);
+        renderItems();
+    }
+}
+
+
+
+/* =====================================================
+   ВРАГИ
+===================================================== */
+
+const ENEMIES = [
+
+["Gaper","️","Обычный противник."],
+["Fly","","Летающий противник."],
+["Spider","️","Двигающийся противник."],
+["Dip","","Наземный противник."],
+["Hopper","","Прыгающий противник."],
+["Pooter","","Летающий противник."],
+["Boom Fly","","Противник с особым поведением."],
+["Host","","Противник, связанный с окружением."],
+["Mulligan","","Противник с различными вариантами поведения."],
+["Leaper","","Прыгающий противник."],
+["Globin","","Противник с особой механикой."],
+["Horf","","Противник с дальней атакой."],
+["Vis","️","Противник с изменяющейся траекторией движения."],
+["Keeper Head","","Вариант противника Keeper."],
+["Wizoob","","Противник с необычным движением."],
+["Bony","","Скелетный противник."],
+["Knight","️","Противник с защитой."],
+["Wall Creep","️","Противник, связанный со стенами."],
+["Ember","","Огненный противник."],
+["Blue Gaper","","Вариант Gaper."]
+
+];
+
+
+/* =====================================================
+   БОССЫ
+===================================================== */
+
+const BOSSES = [
+
+["Monstro","️","Один из первых боссов."],
+["Larry Jr.","","Ранний босс."],
+["Duke of Flies","","Босс, использующий множество мух."],
+["Gurdy","️","Босс с атаками по арене."],
+["The Haunt","","Босс с несколькими фазами."],
+["The Husk","","Альтернативный босс."],
+["Mom","","Один из ключевых боссов."],
+["Mom's Heart","️","Важный босс основной ветки."],
+["It Lives","️","Продвинутая версия Mom's Heart."],
+["Isaac","","Босс Cathedral."],
+["Satan","","Босс Sheol."],
+["The Lamb","","Босс Dark Room."],
+["Mega Satan","","Секретный босс."],
+["Hush","","Секретный босс."],
+["Delirium","","Секретный финальный босс."],
+["Ultra Greed","","Босс Greed Mode."],
+["Greedier","","Продвинутая версия Greed."],
+["Mother","","Финальный босс альтернативного пути."],
+["The Beast","","Финальный босс одной из веток Repentance."],
+["Dogma","","Босс перед финальным сражением одной из веток."],
+["The Witness","️","Особый босс альтернативной сюжетной линии."]
+
+];
+
+
+/* =====================================================
+   ЭТАЖИ
+===================================================== */
+
+const FLOORS = [
+
+["Basement","","Один из первых типов этажей."],
+["Cellar","","Альтернативный вариант раннего этажа."],
+["Burning Basement","","Альтернативный огненный вариант."],
+
+["Caves","","Подземная область."],
+["Catacombs","","Альтернативный вариант Caves."],
+["Flooded Caves","","Водная альтернативная область."],
+
+["Depths","⬇️","Глубокий подземный этаж."],
+["Necropolis","","Альтернативный вариант Depths."],
+["Dank Depths","","Альтернативный вариант Depths."],
+
+["Womb","️","Поздний этап основной ветки."],
+["Utero","","Альтернативный вариант Womb."],
+["Scarred Womb","️","Ещё один вариант Womb."],
+
+["Sheol","","Один из финальных этажей."],
+["Cathedral","","Один из финальных этажей."],
+["Dark Room","","Финальная область одной из веток."],
+["Chest","","Финальная область одной из веток."],
+
+["Downpour","️","Часть альтернативного пути."],
+["Dross","","Альтернативная версия Downpour."],
+["Mines","️","Следующая глава альтернативного пути."],
+["Ashpit","","Альтернативная версия Mines."],
+["Mausoleum","️","Глава альтернативного пути."],
+["Gehenna","","Альтернативная версия Mausoleum."],
+["Corpse","","Поздняя глава альтернативного пути."],
+["Home","","Особая сюжетная область."],
+["The Void","","Особая поздняя область."]
+
+];
+
+
+/* =====================================================
+   РЕНДЕР ПЕРСОНАЖЕЙ
+===================================================== */
+
+const charactersGrid =
+document.getElementById("charactersGrid");
+
+CHARACTERS.forEach((c,index)=>{
+
+    const card=document.createElement("div");
+
+    card.className=
+        "card character "+
+        (c[2]==="tainted"?"tainted":"");
+
+    card.innerHTML=`
+
+        ${
+            c[2]==="tainted"
+            ? '<span class="tainted-label">TAINTED</span>'
+            : ""
+        }
+
+        <div style="font-size:42px;margin-bottom:12px">
+            ${c[1]}
+        </div>
+
+        <h3>${c[0]}</h3>
+
+        <p>${c[3]}</p>
+
+    `;
+
+    charactersGrid.appendChild(card);
+
+});
+
+
+/* =====================================================
+   РЕНДЕР ПРЕДМЕТОВ
+===================================================== */
+
+let currentItemFilter="all";
+
+const itemsGrid =
+document.getElementById("itemsGrid");
+
+const itemSearch =
+document.getElementById("itemSearch");
+
+
+function renderItems(){
+
+    const query =
+        itemSearch.value.toLowerCase();
+
+    itemsGrid.innerHTML="";
+
+    ITEMS
+    .filter(item=>{
+
+        const matchesSearch =
+            item[0].toLowerCase().includes(query) ||
+            item[3].toLowerCase().includes(query);
+
+        const matchesFilter =
+            currentItemFilter==="all" ||
+            item[2]===currentItemFilter ||
+            item[5]===currentItemFilter;
+
+        return matchesSearch && matchesFilter;
+
+    })
+    .forEach(item=>{
+
+        const div =
+            document.createElement("div");
+
+        div.className="entry";
+
+        div.innerHTML=`
+
+            <div class="icon">
+                ${item[1]}
+            </div>
+
+            <h3>${RU_ITEM_DESCRIPTIONS.get(Number(item[8]))?.name || item[0]}</h3>
+
+            <div class="item-meta">
+                <span>${item[2].toUpperCase()}</span>
+                <span>${item[5]}</span>
+                <span>Q${item[4]}</span>
+            </div>
+
+            ${
+                item[6]
+                ? `<div class="item-pickup">${item[6]}</div>`
+                : ""
+            }
+
+            <p>${
+                RU_ITEM_DESCRIPTIONS.get(Number(item[8]))?.description ||
+                item[3] ||
+                "Описание отсутствует в источнике."
+            }</p>
+
+            ${
+                item[7]
+                ? `<div class="item-pool">Пулы: ${item[7]}</div>`
+                : ""
+            }
+
+        `;
+
+        itemsGrid.appendChild(div);
+
+    });
+
+}
+
+
+function filterItems(type,button){
+
+    currentItemFilter=type;
+
+    document
+    .querySelectorAll(".filter")
+    .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    renderItems();
+
+}
+
+
+itemSearch.addEventListener(
+    "input",
+    renderItems
+);
+
+renderItems();
+
+
+/* =====================================================
+   ВРАГИ
+===================================================== */
+
+const enemiesGrid =
+document.getElementById("enemiesGrid");
+
+ENEMIES.forEach(enemy=>{
+
+    const div =
+        document.createElement("div");
+
+    div.className="entry";
+
+    div.innerHTML=`
+
+        <div class="icon">
+            ${enemy[1]}
+        </div>
+
+        <h3>${enemy[0]}</h3>
+
+        <p>${enemy[2]}</p>
+
+    `;
+
+    enemiesGrid.appendChild(div);
+
+});
+
+
+/* =====================================================
+   БОССЫ
+===================================================== */
+
+const bossesGrid =
+document.getElementById("bossesGrid");
+
+BOSSES.forEach(boss=>{
+
+    const div =
+        document.createElement("div");
+
+    div.className="entry";
+
+    div.innerHTML=`
+
+        <div class="icon">
+            ${boss[1]}
+        </div>
+
+        <h3>${boss[0]}</h3>
+
+        <p>${boss[2]}</p>
+
+    `;
+
+    bossesGrid.appendChild(div);
+
+});
+
+
+/* =====================================================
+   ЭТАЖИ
+===================================================== */
+
+const floorsGrid =
+document.getElementById("floorsGrid");
+
+FLOORS.forEach(floor=>{
+
+    const div =
+        document.createElement("div");
+
+    div.className="card";
+
+    div.innerHTML=`
+
+        <div style="font-size:38px;margin-bottom:12px">
+            ${floor[1]}
+        </div>
+
+        <h3>${floor[0]}</h3>
+
+        <p>${floor[2]}</p>
+
+    `;
+
+    floorsGrid.appendChild(div);
+
+});
+
+
+loadRussianDescriptions().finally(() => loadAllItems());
+</script>
+
+</body>
+</html>
+```
