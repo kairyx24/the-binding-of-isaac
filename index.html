@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -677,6 +676,59 @@ footer b{
     line-height:1.45;
 }
 
+
+
+/* =====================================================
+   MOBILE-FIRST REFINEMENTS — author's implementation
+===================================================== */
+:root { color-scheme: dark; }
+html { scroll-padding-top: 72px; }
+body { overflow-wrap: anywhere; -webkit-text-size-adjust: 100%; }
+button, input, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid #e7b66a;
+  outline-offset: 3px;
+}
+nav { padding-bottom: env(safe-area-inset-bottom, 0px); }
+nav ul { justify-content:flex-start; flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; }
+nav li { flex:0 0 auto; }
+nav a { min-height:44px; display:flex; align-items:center; white-space:nowrap; }
+main { width:100%; padding: clamp(32px, 6vw, 80px) clamp(14px, 3.5vw, 24px); }
+section { scroll-margin-top:76px; margin-bottom:clamp(58px, 9vw, 110px); }
+.grid { grid-template-columns:repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+.database-grid { grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.card, .entry, .stat { min-width:0; }
+.search { min-height:48px; }
+.filter { min-height:44px; touch-action:manipulation; }
+.button { min-height:48px; display:inline-flex; align-items:center; justify-content:center; }
+.items-status { line-height:1.5; }
+
+@media (max-width: 600px) {
+  header { min-height: min(690px, 88svh); padding:52px 18px; }
+  .hero { width:100%; }
+  .hero h1 { font-size:clamp(38px, 11vw, 52px); line-height:.98; overflow-wrap:normal; }
+  .hero h2 { margin-top:20px; font-size:12px; line-height:1.7; letter-spacing:1.4px; }
+  .hero p { margin:22px auto; font-size:16px; line-height:1.65; }
+  .buttons { gap:10px; }
+  .button { width:100%; padding:13px 16px; }
+  nav ul { padding-inline:8px; }
+  nav a { padding:12px 11px; font-size:13px; }
+  .title { font-size:clamp(27px, 8vw, 34px); margin-bottom:28px; }
+  .text { font-size:15px; line-height:1.75; }
+  .stats { grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:26px; }
+  .stat { padding:17px 10px; }
+  .stat strong { font-size:clamp(25px, 7vw, 32px); }
+  .stat span { font-size:13px; }
+  .grid, .database-grid { grid-template-columns:1fr; gap:12px; }
+  .card, .entry { padding:18px; }
+  .filters { gap:7px; }
+  .filter { padding:10px 12px; font-size:13px; }
+  footer { padding:34px 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+
 </style>
 </head>
 
@@ -737,7 +789,7 @@ href="#characters"
      NAVIGATION
 ===================================================== -->
 
-<nav>
+<nav aria-label="Основная навигация">
 
 <ul>
 
@@ -860,7 +912,9 @@ class="grid"
 <input
 id="itemSearch"
 class="search"
-placeholder=" Поиск предмета..."
+type="search"
+aria-label="Поиск предметов по названию и описанию"
+placeholder="Поиск предмета..."
 >
 
 <div id="itemsStatus" class="items-status">Подготавливаем полный каталог предметов…</div>
@@ -1695,7 +1749,7 @@ function renderItems(){
 
     itemsGrid.innerHTML="";
 
-    ITEMS
+    const filteredItems = ITEMS
     .filter(item=>{
 
         const matchesSearch =
@@ -1709,8 +1763,14 @@ function renderItems(){
 
         return matchesSearch && matchesFilter;
 
-    })
-    .forEach(item=>{
+    });
+
+    if (!filteredItems.length) {
+        itemsGrid.innerHTML = '<p class="text" style="grid-column:1/-1;padding:24px 0">Ничего не найдено. Попробуйте изменить запрос или фильтр.</p>';
+        return;
+    }
+
+    filteredItems.forEach(item=>{
 
         const div =
             document.createElement("div");
@@ -1879,4 +1939,3 @@ loadRussianDescriptions().finally(() => loadAllItems());
 
 </body>
 </html>
-```
